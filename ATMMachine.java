@@ -33,7 +33,7 @@ Scanner sc =new Scanner(System.in);
     System.out.print("Enter Your amount to withdraw:Rs.");
     double amount = sc.nextDouble();
    
-    if (amount<=balance){
+    if (amount>0 && amount<=balance){
       balance-=amount;
       System.out.println("Withdrawal Successful!!");
       showBalance();
@@ -93,7 +93,7 @@ public class ATMMachine {
           System.out.println(" Thank You!!");
           break;
         default:
-          System.out.println("Enter valid credentials")
+          System.out.println("Enter valid credentials");
           break;
       }
 
