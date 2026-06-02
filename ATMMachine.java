@@ -91,8 +91,9 @@ public class ATMMachine {
           break;
         case 4:
           System.out.println(" Thank You!!");
+          break;
         default:
-          
+          System.out.println("Enter valid credentials")
           break;
       }
 
