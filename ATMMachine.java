@@ -1,65 +1,100 @@
 import java.util.Scanner;
 class Account{
-  Scanner sc = new Scanner(System.in);
-  
+Scanner sc =new Scanner(System.in);
 
-  public void UserAccount(String name,int accountno ,int password,double balance){
-   
-    System.out.println("Enter your bank account last digit");
-   int d =sc.nextInt();
+  private String name;
+  private int accountNo;
+  private int password;
+  private double balance;
+ 
+  public Account(String name, int accountNo,int password, double balance){
+    this.name= name;
+    this.accountNo = accountNo;
+    this.password =password;
+    this.balance=balance;
 
-   System.out.println("Enter your Password");
-    int e= sc.nextInt();
-    int a;
-  if(d==accountno && e==password){
-   do{
-    System.out.println("1.Check Balance\n 2.Deposit \n 3.Withdraw \n 4.Exit ");
-   a= sc.nextInt();
-   
-   switch (a) {
-    case 1:
-      System.out.println("Your Balance is Rs."+balance);
-  break;
-
-    case 2:
-
-      System.out.println("Enter amount to deposit:");
-      double b = sc.nextDouble();
-      balance= balance+b;
-      System.out.println("your balance is Rs.:"+balance);
-      break;
-    
-    case 3:
-
-      System.out.println("Enter anout to withdraw");
-      double c = sc.nextDouble();
-      if(c<+balance){
-        balance=balance-c;
-        System.out.println("Withdraw successful, total remaining amount is Rs.:" + balance);
-      }else{
-        System.out.println("The amount you entered is not valid try again");
-      }
-      break;
-    case 4:
-    
-      System.out.println("Thank you!! ");
-      ;break;
-     
-      default:
-      System.out.println("Enter a valid choice");
-      break;  
-     }
-    }while (a!= 4);
-   
-  
-  }else{System.out.println("Enter a valid account no or the password");}
-}
-
-
-public class ATMMachine{
-  public static void main(String[] args) { 
-    Account account1 = new Account();
-    account1.UserAccount("Akash", 2354, 1265, 6000);
-    
   }
-}}
+  void showBalance(){
+   System.out.println("Your current balance is Rs."+ balance);
+  }
+  
+  void deposit(){
+    System.out.print("Enter amount to deposit :Rs.");
+    double amount = sc.nextDouble();
+    balance +=amount;
+    System.out.println("Deposit Successful!!");
+    showBalance();
+  }
+  void withdraw(){
+    System.out.print("Enter Your amount to withdraw:Rs.");
+    double amount = sc.nextDouble();
+    balance-=amount;
+    if (amount<=balance){
+      System.out.println("Withdrawal Successful!!");
+      showBalance();
+    }else{
+      System.out.println("You dont have enough balance to withdraw your given amount ");
+    }
+  }
+ 
+  boolean login(int accNo, int pass){
+    if(accountNo== accNo && password==pass){
+      return true;
+
+    }else{
+      return false;
+    }
+    
+      
+    }
+  }
+
+  
+  
+
+public class ATMMachine {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Account account1 = new Account("Akash",2125,6534,6000);
+    System.out.print("Enter your Account Number:");
+    int accNo= sc.nextInt();
+   
+    System.out.print("Enter Your Password:");
+    int pass = sc.nextInt();
+   
+    int a ;
+   if (account1.login(accNo,pass)) {
+    System.out.println("Login Successful");
+    
+   
+    do{ 
+     System.out.println("1. Check Balance \n 2. Deposit \n 3.Withdraw \n 4. Exit");
+
+     a = sc.nextInt();
+    
+   
+      switch (a) {
+        case 1:
+          account1.showBalance();
+          break;
+        case 2:
+          account1.deposit();
+          break;
+        case 3:
+          account1.withdraw();
+          break;
+        case 4:
+          System.out.println(" Thank You!!");
+        default:
+          
+          break;
+      }
+
+    }while(a!=4);
+  }else{
+ System.out.println("Enter valid credentials");
+  }
+   
+  }
+}
