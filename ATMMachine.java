@@ -21,10 +21,14 @@ Scanner sc =new Scanner(System.in);
   void deposit(){
     System.out.print("Enter amount to deposit :Rs.");
     double amount = sc.nextDouble();
+    if (amount<0){
     balance +=amount;
     System.out.println("Deposit Successful!!");
     showBalance();
-  }
+    }else{
+     System.out.println("Enter valid amount");
+    }
+    }
   void withdraw(){
     System.out.print("Enter Your amount to withdraw:Rs.");
     double amount = sc.nextDouble();
