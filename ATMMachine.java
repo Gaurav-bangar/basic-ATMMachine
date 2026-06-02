@@ -28,8 +28,9 @@ Scanner sc =new Scanner(System.in);
   void withdraw(){
     System.out.print("Enter Your amount to withdraw:Rs.");
     double amount = sc.nextDouble();
-    balance-=amount;
+   
     if (amount<=balance){
+      balance-=amount;
       System.out.println("Withdrawal Successful!!");
       showBalance();
     }else{
